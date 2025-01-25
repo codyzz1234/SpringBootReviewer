@@ -25,7 +25,12 @@ public class ReportController {
     }
 
     @PostMapping(value = "property-test")
-    public ResponseEntity<?> testPropertyBinding() throws CustomCheckedReportException {
+    public ResponseEntity<?> testPropertyBinding() {
         return ResponseEntity.status(HttpStatus.OK).body(reportService.testPropertyBinding());
+    }
+
+    @PostMapping(value = "custom-envronment-test")
+    public ResponseEntity<?> testCustomEnvironment() {
+        return ResponseEntity.status(HttpStatus.OK).body(reportService.testEnvironmentBinding());
     }
 }

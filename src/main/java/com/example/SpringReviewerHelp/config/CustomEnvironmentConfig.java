@@ -21,8 +21,7 @@ public class CustomEnvironmentConfig {
     public CustomEnvironmentConfig(ConfigurableEnvironment environment) {
         this.environment = environment;
     }
-
-    @Bean
+    
     public void addPropertySources() throws IOException {
         PropertySource<?> propertySource = new ResourcePropertySource("classpath:my-values.properties");
         environment.getPropertySources().addLast(propertySource);

@@ -1,5 +1,6 @@
 package com.example.SpringReviewerHelp.service;
 
+import com.example.SpringReviewerHelp.consts.EnvironmentConstants;
 import com.example.SpringReviewerHelp.consts.ErrorConstants;
 import com.example.SpringReviewerHelp.dto.Report;
 import com.example.SpringReviewerHelp.exceptions.CustomCheckedReportException;
@@ -10,7 +11,6 @@ import com.example.SpringReviewerHelp.util.ServiceUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,6 @@ import java.util.Map;
 
 @Slf4j
 @Service
-@ConditionalOnBean
 public class ReportService implements ReportBuilderInterface {
 
     private static final String REPORT_EMPTY_ERROR_MESSAGE_CHECKED = "Report Name is empty(Checked Exception)";
@@ -76,5 +75,13 @@ public class ReportService implements ReportBuilderInterface {
     /**
      * Test if my custom configuration was registered to the environment
      */
+    public Map<String, Object> testEnvironmentBinding() {
+        String kenleyProperty = environment.getProperty(EnvironmentConstants.KENLEY_PROPERTY);
+        String kenleyValueProposition = environment.getProperty(EnvironmentConstants.KENLEY_VALUE_PROPOSITION);
+        return Map.of(
+                "kenleyProperty", kenleyProperty,
+                "kenleyValueProposition", kenleyValueProposition
+        );
+    }
 
 }
