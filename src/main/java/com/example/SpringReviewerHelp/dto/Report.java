@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "t_report")
 @NoArgsConstructor
-public class Report extends AbstractDto{
+public class Report extends AbstractDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

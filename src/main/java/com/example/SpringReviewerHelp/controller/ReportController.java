@@ -33,4 +33,5 @@ public class ReportController {
     public ResponseEntity<?> testCustomEnvironment() {
         return ResponseEntity.status(HttpStatus.OK).body(reportService.testEnvironmentBinding());
     }
-}
+
+    }

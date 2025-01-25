@@ -1,6 +1,5 @@
 package com.example.SpringReviewerHelp.config;
 
-import jdk.jfr.StackTrace;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

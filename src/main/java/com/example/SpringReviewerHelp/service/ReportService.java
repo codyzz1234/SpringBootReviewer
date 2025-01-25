@@ -49,7 +49,6 @@ public class ReportService implements ReportBuilderInterface {
     @Transactional
     public Report createReport(CreateReport createReport) throws CustomCheckedReportException {
         Report report = ReportBuilderInterface.super.createReport(createReport.getReportName());
-        report.setCreatedBy(DEFAULT_CREATOR);
         reportRepository.save(report);
         if (ServiceUtil.checkIfStringIsNullOrEmpty(report.getName())) {
             throw new CustomCheckedReportException(ErrorConstants.VALIDATION_ERROR, REPORT_EMPTY_ERROR_MESSAGE_CHECKED);
