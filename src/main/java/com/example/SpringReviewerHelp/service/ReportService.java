@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,6 @@ import java.util.Map;
 public class ReportService implements ReportBuilderInterface {
 
     private static final String REPORT_EMPTY_ERROR_MESSAGE_CHECKED = "Report Name is empty(Checked Exception)";
-    private static final String REPORT_EMPTY_ERROR_MESSAGE_UNCHECKED = "Report Name is empty(Unchecked Exception)";
-
 
     @Autowired
     @Qualifier("returnValueBean")  // Matches the @Bean method name
@@ -32,6 +31,9 @@ public class ReportService implements ReportBuilderInterface {
     @Autowired
     @Qualifier("returnValueProposition")  // Matches the @Bean method name
     private String returnValueProposition;
+
+    @Autowired
+    private Environment environment;
 
 
     private static final String DEFAULT_CREATOR = "Cody";
@@ -59,6 +61,10 @@ public class ReportService implements ReportBuilderInterface {
         return reportRepository.save(report);
     }
 
+    /**
+     * Test if application properties properly binding to the variables.
+     * @return
+     */
     public Map<String, Object> testPropertyBinding() {
         log.info("The property value is:{}", this.myReturnValueBean);
         return Map.of(
@@ -66,4 +72,9 @@ public class ReportService implements ReportBuilderInterface {
                 "myValueProposition", this.returnValueProposition
         );
     }
+
+    /**
+     * Test if my custom configuration was registered to the environment
+     */
+
 }
