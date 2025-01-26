@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 @TestPropertySource(locations = "classpath:application-test.properties")
 class ApplicationTestProfile {
 
-	@Value("$test-property-my-value}")
+	@Value("${test-property-my-value}")
 	private String myValue;
 	@Test
 	void contextLoads() {
