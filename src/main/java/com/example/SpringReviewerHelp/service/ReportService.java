@@ -3,6 +3,8 @@ package com.example.SpringReviewerHelp.service;
 import com.example.SpringReviewerHelp.consts.EnvironmentConstants;
 import com.example.SpringReviewerHelp.consts.ErrorConstants;
 import com.example.SpringReviewerHelp.dto.Report;
+import com.example.SpringReviewerHelp.dto.polymorphism.ChildClass;
+import com.example.SpringReviewerHelp.dto.polymorphism.ParentClass;
 import com.example.SpringReviewerHelp.exceptions.CustomCheckedReportException;
 import com.example.SpringReviewerHelp.interfaces.ReportBuilderInterface;
 import com.example.SpringReviewerHelp.model.CreateReport;
@@ -81,6 +83,21 @@ public class ReportService implements ReportBuilderInterface {
                 "kenleyProperty", kenleyProperty,
                 "kenleyValueProposition", kenleyValueProposition
         );
+    }
+
+    /**
+     * Child class here overrides the methods calculateAge method. and is resolved at runtime which method ot use
+     * @param age - the age parameter passed as a request param
+     * @return - returns Map<String,Object> response.
+     */
+    public Map<String,Object> dynamicPolymorphism(int age) {
+        ParentClass parentClass = new ParentClass();
+        parentClass.calculateAge(age);
+
+        ParentClass childClass = new ChildClass();
+        childClass.calculateAge(age);
+        return Map.of("childAge is ", childClass.getAge(),
+                        "parentAge is ", parentClass.getAge());
     }
 
 }
