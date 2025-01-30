@@ -8,17 +8,18 @@ import java.util.List;
 @Configuration
 public class SameBeanConfig {
     @Bean
-    public List<String> myString() {
-        return List.of("MyString");
+    public Integer myInt() {
+        return 1;
     }
 
     @Bean
-    public List<String> yourString() {
-        return List.of("YourString");
+    public Integer yourInt() {
+        return 2;
     }
 
     @Bean
-    public List<String> thatString() {
-        return List.of("thatString");
+    public Integer thisInt() {
+        return 3;
     }
+
 }

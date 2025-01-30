@@ -5,18 +5,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
 public class MultipleBeansAutoWireService {
-    @Autowired
-    @Qualifier("myString")
-    private List<String> thisString;
 
-    public Collection<String> testThis() {
-        log.info("This string is:{}", this.thisString);
-        return this.thisString;
+    //Spring will resolve the ambiguity based on the variable name here.
+    @Autowired
+    private Integer myInt;
+    @Autowired
+    @Qualifier("yourInt")
+    private Integer yourInt;
+
+    @Autowired
+    @Qualifier("thisInt")
+    private Integer thisInt;
+    public Map<String, Integer> testThis() {
+        return Map.of(
+                "myInt", this.myInt,
+                "yourInt", this.yourInt,
+                "thisInt", this.thisInt
+        );
     }
 }
