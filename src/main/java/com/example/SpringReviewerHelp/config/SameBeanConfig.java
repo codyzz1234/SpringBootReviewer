@@ -22,4 +22,9 @@ public class SameBeanConfig {
         return 3;
     }
 
+    @Bean
+    public Integer thereInt() {
+        return 4;
+    }
+
 }
