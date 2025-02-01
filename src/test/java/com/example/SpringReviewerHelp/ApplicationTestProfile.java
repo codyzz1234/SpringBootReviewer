@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 
 @Slf4j
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
+@DirtiesContext
 class ApplicationTestProfile {
 
 	@Value("${test-property-my-value}")

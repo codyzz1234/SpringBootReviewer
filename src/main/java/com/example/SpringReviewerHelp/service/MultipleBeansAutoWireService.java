@@ -3,7 +3,6 @@ package com.example.SpringReviewerHelp.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +29,7 @@ public class MultipleBeansAutoWireService {
 
     @Autowired
     private ApplicationContext applicationContext;
+
     public Map<String, Integer> testThis() {
         Integer beanThis = applicationContext.getBean(Integer.class);
         return Map.of(
