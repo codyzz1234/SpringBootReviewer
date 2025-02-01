@@ -3,6 +3,7 @@ package com.example.SpringReviewerHelp.controller;
 
 import com.example.SpringReviewerHelp.service.MultipleBeansAutoWireService;
 import com.example.SpringReviewerHelp.service.TransactionTestService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,11 @@ public class TransactionTestController {
     @PostMapping(value = "bean-test")
     public ResponseEntity<?> beanTest() {
         return ResponseEntity.status(HttpStatus.OK).body(autoWireService.testThis());
+    }
+
+    @Operation(summary = "Outisde component api")
+    @PostMapping(value = "outiside-component")
+    public ResponseEntity<?> outsideComponentTest() {
+        return ResponseEntity.status(HttpStatus.OK).body(autoWireService.componentScanOutside());
     }
 }
