@@ -18,19 +18,21 @@ public class TransactionTestController {
     @Autowired
     private MultipleBeansAutoWireService autoWireService;
 
-    @PostMapping(value = "test-transaction-proxy")
-    public ResponseEntity<?> testTransactionProxy() {
+    @Operation(summary = "Test Transaction that is non proxying.")
+    @PostMapping(value = "test-nonproxy-proxy")
+    public ResponseEntity<?> testNonProxyTransaction() {
         return ResponseEntity.status(HttpStatus.OK).body(transactionTestService.transactionOne());
     }
+
+    @Operation(summary = "Should throw exception transaction")
+    @PostMapping(value = "test-proxy-transaction")
+    public ResponseEntity<?> testProxyTransaction() {
+        return ResponseEntity.status(HttpStatus.OK).body(transactionTestService.proxyingTransactionOne());
+    }
+
 
     @PostMapping(value = "bean-test")
     public ResponseEntity<?> beanTest() {
         return ResponseEntity.status(HttpStatus.OK).body(autoWireService.testThis());
-    }
-
-    @Operation(summary = "Outisde component api")
-    @PostMapping(value = "outiside-component")
-    public ResponseEntity<?> outsideComponentTest() {
-        return ResponseEntity.status(HttpStatus.OK).body(autoWireService.componentScanOutside());
     }
 }

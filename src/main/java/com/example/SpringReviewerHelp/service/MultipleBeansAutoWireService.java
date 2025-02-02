@@ -31,22 +31,12 @@ public class MultipleBeansAutoWireService {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Autowired
-    private OutsideComponent outsideComponent;
-
     public Map<String, Integer> testThis() {
         Integer beanThis = applicationContext.getBean(Integer.class);
         return Map.of(
                 "myInt", this.myInt,
                 "yourInt", this.yourInt,
                 "thisInt", this.thisInt
-        );
-    }
-
-    public Map<String, String> componentScanOutside() {
-        return Map.of(
-                "outisideValue", outsideComponent.getOutsideValue(),
-                "outsideName", outsideComponent.getOutsideName()
         );
     }
 }
